@@ -7,10 +7,11 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Corra!</title>
     <!-- Latest compiled and minified CSS -->
+    <!-- Optional theme -->
+
 <link rel="stylesheet" href="Content/bootstrap.min.css" />
 
-<!-- Optional theme -->
-<link rel="stylesheet" href="Content/Site.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="Scripts/jquery-1.10.2.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
@@ -21,7 +22,6 @@
 <body style="height: 318px">
     <form id="form1" runat="server">
         <div>
-            <asp:Panel ID="Panel1" runat="server"  CssClass ="col-lg-5 col-md-5 col-sm-6">
               <div class="panel panel-default">
                 <div class="panel-heading">Letras Disponiveis</div>
                     <div class="panel-body"></div>
@@ -78,10 +78,9 @@
                   &nbsp;&nbsp;
                 <asp:Button ID="ButtonZ" CssClass="btn btn-primary" runat="server" Height="30px" OnClick="ButtonZ_Click" Text="Z" Width="30px" />
             </div>
-                  </asp:Panel>
-        </div>
-         <asp:Panel ID="Panel2" runat="server"  CssClass ="col-lg-5 col-md-5 col-sm-6">
-              <div class="panel panel-default">
+          </div>
+         <br />
+        <div class="col-lg-5 col-md-5">              <div class="panel panel-default">
                 <div class="panel-heading">Descubra a Palavra</div>
                     <div class="panel-body"></div>
            
@@ -89,17 +88,25 @@
          <asp:Label runat="server" Font-Size="Large" Text="0" ID ="lblPalavra" ></asp:Label>
         </div>
         </div>
-             </asp:Panel>
+          </div>
+
          <asp:Panel ID="Panel3" runat="server"  CssClass ="col-lg-5 col-md-5 col-sm-6">
               <div class="panel panel-default">
-                <div class="panel-heading">Quantidade de erros</div>
+                <div class="panel-heading">Quantidade de erros  </div>
                     <div class="panel-body"></div>
         
         <asp:Label runat="server" Text="0" ID ="lblLetra"></asp:Label>
                   </div>
         </asp:Panel>
-        
-        <img src="Images/monkey.gif" /> <img src="Images/monster.gif" /> 
-    </form>
+        <br /><br /> <br /><br /> <br /><br />
+      <div class="col-lg-12 col-md-12">
+       
+      <img runat="server" id="monster" src="Images/monster.gif" width="300" height="300" />
+           
+        <img src="Images/monkey.gif" id="victim"  runat="server"  width="170" height="170" /> 
+
+   
+        </div>
+          </form>
 </body>
 </html>

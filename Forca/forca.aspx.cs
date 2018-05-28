@@ -9,13 +9,18 @@ namespace Forca
 {
     public partial class forca : System.Web.UI.Page
     {
+        int diferenca;
         protected void Page_Load(object sender, EventArgs e)
         {
+            
+           
+            
             if (!IsPostBack)
             {
 
-            
-                    string palavra = "CHUPACABRA";
+                diferenca = 50;
+                victim.Style.Value = "margin-left:" + diferenca + "%";
+                string palavra = "CHUPACABRA";
                 List<string> caracteres = new List<string>(new string[] { "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"});
           
                 foreach (string letra in caracteres)
@@ -25,6 +30,14 @@ namespace Forca
 
                 lblPalavra.Text = palavra;
 
+            }
+            else
+            {
+               var erros = Convert.ToInt32(lblLetra.Text);
+                diferenca = 50 - (erros*10);
+                
+
+                victim.Style.Value = "margin-left:" + diferenca + "%";
             }
         }
 
@@ -209,6 +222,9 @@ namespace Forca
             else
             {
                 lblLetra.Text = Convert.ToString(Convert.ToInt32(lblLetra.Text)+1);
+                diferenca = diferenca - 10;
+                victim.Style.Value = "margin-left:" + diferenca + "%";
+                
             }
 
             if(Convert.ToInt32(lblLetra.Text) == ErrosTotal)

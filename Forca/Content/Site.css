@@ -18,7 +18,13 @@ textarea {
     max-width: 280px;
 }
 
+.posicao1{
+    margin-left:60px;
+}
 
+.posicao2 {
+    margin-left: 20%;
+}
 /* Responsive: Portrait tablets and up */
 @media screen and (min-width: 768px) {
     .jumbotron {
