@@ -13,6 +13,24 @@ namespace adm {
     public partial class Casual {
         
         /// <summary>
+        /// ddlNivel1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlNivel1;
+        
+        /// <summary>
+        /// ddlCategoria1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlCategoria1;
+        
+        /// <summary>
         /// btnDesafio control.
         /// </summary>
         /// <remarks>

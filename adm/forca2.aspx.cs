@@ -21,7 +21,8 @@ namespace Forca
                 diferenca = 50;
                 victim.Style.Value = "margin-left:" + diferenca + "%";
                 Int32 palavraID = Convert.ToInt32(Request.QueryString["palavraID"]);
-               
+                lblCategoria.Text = Request.QueryString["Categoria"];
+
                 var palavra = "";
                 using (var entidades = new Entities())
                 {
@@ -245,13 +246,13 @@ namespace Forca
           if(lblPalavra.Text == palavra )
             {
      
-                Response.Redirect("Vitoria.aspx");
+                Response.Redirect("Vitoria2.aspx");
 
             }
 
             if(Convert.ToInt32(lblLetra.Text) == ErrosTotal)
             {
-                Response.Redirect("Derrota.aspx?palavra="+palavra);
+                Response.Redirect("Derrota2.aspx?palavra="+palavra);
             }
            
            

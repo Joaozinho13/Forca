@@ -185,10 +185,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Casual.aspx" />
+    <Content Include="Derrota2.aspx" />
     <Content Include="forca2.aspx" />
     <Content Include="Regras.aspx" />
     <Content Include="Images\derrota.png" />
     <Content Include="Images\vitoria.png" />
+    <Content Include="Vitoria2.aspx" />
     <Content Include="Vitoria.aspx" />
     <Content Include="Derrota.aspx" />
     <Content Include="Dash.aspx" />
@@ -316,6 +318,13 @@
     <Compile Include="Casual.aspx.designer.cs">
       <DependentUpon>Casual.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Derrota2.aspx.cs">
+      <DependentUpon>Derrota2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Derrota2.aspx.designer.cs">
+      <DependentUpon>Derrota2.aspx</DependentUpon>
+    </Compile>
     <Compile Include="forca2.aspx.cs">
       <DependentUpon>forca2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -329,6 +338,13 @@
     </Compile>
     <Compile Include="Regras.aspx.designer.cs">
       <DependentUpon>Regras.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Vitoria2.aspx.cs">
+      <DependentUpon>Vitoria2.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vitoria2.aspx.designer.cs">
+      <DependentUpon>Vitoria2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Vitoria.aspx.cs">
       <DependentUpon>Vitoria.aspx</DependentUpon>

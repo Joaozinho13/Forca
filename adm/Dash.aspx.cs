@@ -15,11 +15,15 @@ namespace adm
 
             using (var entidades = new Entities())
             {
-                
+                    
                 var usuariologado = (from b in entidades.AspNetUsers where b.UserName.Equals(Context.User.Identity.Name.ToString()) select b.Id).FirstOrDefault().ToString();
 
                 var usuarios = from b in entidades.AspNetUsers select b;
 
+                var vitorias = (from b in entidades.Desafio where b.IDDesafiado == usuariologado && b.Resultado.Equals("V") select b).ToList();
+                lblQtdVitoria.Text = Convert.ToString(vitorias.Count);
+                var derrotas = (from b in entidades.Desafio where b.IDDesafiado == usuariologado && b.Resultado.Equals("D") select b).ToList();
+                lblQtdDerrota.Text = Convert.ToString(derrotas.Count);
                 gdvDesafiar.DataSource = usuarios.ToList();
                 gdvDesafiar.DataBind();
                 //foreach (AspNetUsers users in usuarios)
@@ -33,27 +37,26 @@ namespace adm
                 gdvDesafios.DataBind();
             }
 
-
+            if (!IsPostBack) { 
             using (var entidades = new Entities())
             {
 
                 var categorias = (from b in entidades.Categoria select b).ToList();
                 
-                    foreach (GridViewRow rows in gdvDesafiar.Rows)
-                    {
-                        var index = rows.RowIndex;
-                        DropDownList ddlCategoria = gdvDesafiar.Rows[index].FindControl("ddlCategoria") as DropDownList;
-                        ddlCategoria.DataSource = categorias;
-                        ddlCategoria.DataTextField = "Descricao";
-                        ddlCategoria.DataValueField = "ID";
-                        ddlCategoria.DataBind();
+                   
+                        //var index = rows.RowIndex;
+                        //DropDownList ddlCategoria = gdvDesafiar.Rows[index].FindControl("ddlCategoria") as DropDownList;
+                        ddlCategoria1.DataSource = categorias;
+                        ddlCategoria1.DataTextField = "Descricao";
+                        ddlCategoria1.DataValueField = "ID";
+                        ddlCategoria1.DataBind();
 
-                    }
+                    
                
             }
 
+            }
 
-            
         }
         public void gdvDesafio_RowCommand(Object sender, GridViewCommandEventArgs e)
         {
@@ -90,68 +93,73 @@ namespace adm
             // CommandName property to determine which button was clicked.
             if (e.CommandName == "Desafiar")
             {
+
                 
                 int index = Convert.ToInt32(e.CommandArgument);
 
                 int RowIndex = int.Parse(e.CommandArgument.ToString().Trim());
 
-                DropDownList ddlNew = (DropDownList)gdvDesafiar.Rows[RowIndex].FindControl("ddlNivel");
-                DropDownList ddlNew2 = (DropDownList)gdvDesafiar.Rows[RowIndex].FindControl("ddlCategoria");
-                string abc = ddlNew.SelectedValue;
-                string abc2 = ddlNew2.SelectedValue;
+                //DropDownList ddlNew = (DropDownList)gdvDesafiar.Rows[RowIndex].FindControl("ddlNivel");
+                //DropDownList ddlNew2 = (DropDownList)gdvDesafiar.Rows[RowIndex].FindControl("ddlCategoria");
+                //string abc = ddlNew.SelectedValue;
+                //string abc2 = ddlNew2.SelectedValue;
 
-                // Get the last name of the selected author from the appropriate
-                // cell in the GridView control.
+                //// Get the last name of the selected author from the appropriate
+                //// cell in the GridView control.
                 GridViewRow selectedRow = gdvDesafiar.Rows[index];
                 TableCell IDdestinatario = selectedRow.Cells[0];
-                Int32 categoriaGet = 1;
-                using (var entidades = new Entities())
-                {
-                    var categoria = (from b in entidades.Categoria select b).ToList();
+                lblDesafiado.Text = IDdestinatario.Text;
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal2", "$('#myModal2').modal();", true);
+                upModal2.Update();
 
-                    Random rand1 = new Random(DateTime.Now.Millisecond);
-                    var resultado = categoria[rand1.Next(categoria.Count)];
-                    categoriaGet = resultado.Id;
-                }
+                //Int32 categoriaGet = 1;
+                //using (var entidades = new Entities())
+                //{
+                //    var categoria = (from b in entidades.Categoria select b).ToList();
 
-                Random rdn = new Random();
-                var dificuldade = rdn.Next(1, 3);
+                //    Random rand1 = new Random(DateTime.Now.Millisecond);
+                //    var resultado = categoria[rand1.Next(categoria.Count)];
+                //    categoriaGet = resultado.Id;
+                //}
 
-
-
-                
-
-
-
-                    DropDownList ddlNivel = selectedRow.FindControl("ddlNivel") as  DropDownList;
-
-                DropDownList ddlCategoria = selectedRow.FindControl("ddlCategoria") as DropDownList;
-                var usuariologado = "";
-                using (var entidades = new Entities())
-                {
-
-                    usuariologado = (from b in entidades.AspNetUsers where b.UserName.Equals(Context.User.Identity.Name.ToString()) select b.Id).FirstOrDefault().ToString();
-                    string destinatario = IDdestinatario.Text;
-                    var nivel = ddlNivel.SelectedItem.Text.Substring(0, 1);
-
-                    Desafio desafio = new Desafio();
-                    desafio.IDDesafiado = destinatario;
-                    desafio.IDDesafiante = usuariologado;
-                    desafio.IDDificuldade = dificuldade;
-                    desafio.IDCategoria = categoriaGet;
-                    entidades.Desafio.Add(desafio);
-                    entidades.SaveChanges();
-                    pnlMensagem.CssClass = "alert alert-success";
-                    lblMensagem.Text = "Desafio enviado com Sucesso!";
-                }
-
-                
+                //Random rdn = new Random();
+                //var dificuldade = rdn.Next(1, 3);
 
 
 
 
 
-                //Response.Redirect("forca.aspx");
+
+
+                //    DropDownList ddlNivel = selectedRow.FindControl("ddlNivel") as  DropDownList;
+
+                //DropDownList ddlCategoria = selectedRow.FindControl("ddlCategoria") as DropDownList;
+                //var usuariologado = "";
+                //using (var entidades = new Entities())
+                //{
+
+                //    usuariologado = (from b in entidades.AspNetUsers where b.UserName.Equals(Context.User.Identity.Name.ToString()) select b.Id).FirstOrDefault().ToString();
+                //    string destinatario = IDdestinatario.Text;
+                //    var nivel = ddlNivel.SelectedItem.Text.Substring(0, 1);
+
+                //    Desafio desafio = new Desafio();
+                //    desafio.IDDesafiado = destinatario;
+                //    desafio.IDDesafiante = usuariologado;
+                //    desafio.IDDificuldade = dificuldade;
+                //    desafio.IDCategoria = categoriaGet;
+                //    entidades.Desafio.Add(desafio);
+                //    entidades.SaveChanges();
+                //    pnlMensagem.CssClass = "alert alert-success";
+                //    lblMensagem.Text = "Desafio enviado com Sucesso!";
+                //}
+
+
+
+
+
+
+
+                ////Response.Redirect("forca.aspx");
 
             }
 
@@ -203,6 +211,31 @@ namespace adm
         protected void ddlNivel_SelectedIndexChanged(object sender, EventArgs e)
         {
            
+        }
+
+        protected void btnEnviar_Click(object sender, EventArgs e)
+        {
+            using (var entidades = new Entities())
+            {
+
+                var usuariologado = (from b in entidades.AspNetUsers where b.UserName.Equals(Context.User.Identity.Name.ToString()) select b.Id).FirstOrDefault().ToString();
+                string destinatario = lblDesafiado.Text;
+                var nivel = ddlNivel1.SelectedItem.Text.Substring(0, 1);
+
+                Desafio desafio = new Desafio();
+                desafio.IDDesafiado = destinatario;
+                desafio.IDDesafiante = usuariologado;
+                desafio.IDDificuldade = Convert.ToInt32(nivel);
+                desafio.IDCategoria = Convert.ToInt32(ddlCategoria1.SelectedValue);
+                entidades.Desafio.Add(desafio);
+                entidades.SaveChanges();
+                 pnlMensagem.CssClass = "alert alert-success";
+                lblMensagem.Text = "Desafio enviado com Sucesso!";
+                ScriptManager.RegisterStartupScript(Page, Page.GetType(), "myModal2", "$('#myModal2').modal('hide');", true);
+                upModal2.Update();
+                pnlMensagem1.Update();
+
+            }
         }
     }
 }

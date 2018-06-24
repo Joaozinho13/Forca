@@ -12,17 +12,38 @@ namespace adm
         protected void Page_Load(object sender, EventArgs e)
         {
 
-        }
+            if (!IsPostBack)
+            {
+                using (var entidades = new Entities())
+                {
+
+                    var categorias = (from b in entidades.Categoria select b).ToList();
+
+
+                    //var index = rows.RowIndex;
+                    //DropDownList ddlCategoria = gdvDesafiar.Rows[index].FindControl("ddlCategoria") as DropDownList;
+                    ddlCategoria1.DataSource = categorias;
+                    ddlCategoria1.DataTextField = "Descricao";
+                    ddlCategoria1.DataValueField = "ID";
+                    ddlCategoria1.DataBind();
+
+
+
+                }
+            }
+            }
 
         protected void btnDesafio_Click(object sender, EventArgs e)
         {
             using (var entidades = new Entities())
             {
-                var palavra = (from b in entidades.Palavra select b).ToList();
+                var nivel = ddlNivel1.SelectedItem.Text.Substring(0, 1);
+                var categoria = ddlCategoria1.SelectedValue;
+                var palavra = (from b in entidades.Palavra where b.IDCategoria==categoria && b.IDDificuldade==categoria select b ).ToList();
                 Random rand = new Random(DateTime.Now.Millisecond);
                 var resultado = palavra[rand.Next(palavra.Count)];
 
-                Response.Redirect("forca2.aspx?palavraID=" + resultado.Id);
+                Response.Redirect("forca2.aspx?palavraID=" + resultado.Id + "&Categoria="+ddlCategoria1.SelectedItem);
 
             }
 

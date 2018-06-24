@@ -52,8 +52,12 @@
                     <ul class="nav navbar-nav">
                         <li><a runat="server" href="~/">Home</a></li>
                         <li><a runat="server" href="~/About">Sobre nós</a></li>
+                          <% if (Context.User.Identity.IsAuthenticated) { %>
                         <li><a runat="server" href="~/Dash">DashBoard</a></li>
-                        <li><a runat="server" href="~/Regras">Regras</a></li>
+                             <%  } %>
+
+                                                         <li><a runat="server" href="~/Regras">Regras</a></li>
+                      
                         <li><a runat="server" href="~/Casual">Jogo Individual</a></li>
           
                    <%--     <li><a runat="server" href="~/Contact">Contato</a></li>--%>
