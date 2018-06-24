@@ -22,7 +22,8 @@
 <body style="height: 318px">
     <form id="form1" runat="server">
         <div>
-              <div class="panel panel-default">
+            <br />   <br />   
+              <div class="panel panel-default"><br />   
                 <div class="panel-heading">Letras Disponiveis</div>
                     <div class="panel-body"></div>
                     

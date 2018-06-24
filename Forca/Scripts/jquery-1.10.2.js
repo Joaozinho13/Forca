@@ -2571,7 +2571,7 @@ function condense( unmatched, map, filter, context, xml ) {
 	return newUnmatched;
 }
 
-function setMatcher( preFilter, selector, matcher, postFilter, postFinder, postSelector ) {
+function setMatcher( preFilter, selector, matcher, postFilter, postr, postSelector ) {
 	if ( postFilter && !postFilter[ expando ] ) {
 		postFilter = setMatcher( postFilter );
 	}
