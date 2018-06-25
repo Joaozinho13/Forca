@@ -83,7 +83,7 @@
           </div>
          
         <div class="col-lg-6 col-md-6">              <div class="panel panel-default">
-                <div class="panel-heading">Descubra a Palavra </div>
+                <div class="panel-heading">Descubra a Palavra -   Categoria :<asp:Label ID="lblCategoria" runat="server"></asp:Label></div>
                     <div class="panel-body"></div>
            
         <div style="letter-spacing:15px;">
